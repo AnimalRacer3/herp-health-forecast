@@ -8,7 +8,6 @@ import { ArrowRight, Activity, Brain, Shield, TrendingUp, Users, MessageCircle }
 import heroImage from "@/assets/hero-reptile.jpg";
 import dashboardImage from "@/assets/dashboard-preview.jpg";
 import forestBg from "@/assets/forest-background.jpg";
-import reptileVideo from "@/assets/ReptileHealthVideo.mp4";
 
 const Index = () => {
   const [showBuilder, setShowBuilder] = useState(false);
@@ -138,7 +137,7 @@ const Index = () => {
                 controls
                 poster={heroImage}
               >
-                <source src={reptileVideo} type="video/mp4" />
+                <source src="/assets/ReptileHealthVideo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
