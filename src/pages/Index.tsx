@@ -80,6 +80,20 @@ const Index = () => {
                   Find Your Plan
                   <ArrowRight className="h-5 w-5" />
                 </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => {
+                    const communitySection = document.getElementById("community");
+                    if (communitySection) {
+                      communitySection.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="gap-2"
+                >
+                  <Users className="h-5 w-5" />
+                  Join the Community
+                </Button>
               </div>
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
