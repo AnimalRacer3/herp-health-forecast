@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/Header";
 import { PlanBuilder } from "@/components/PlanBuilder";
 import { PricingCard } from "@/components/PricingCard";
 import { EmailCapture } from "@/components/EmailCapture";
@@ -39,9 +40,11 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
+      <Header />
+      
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/30">
+      <section className="relative overflow-hidden">
         {/* Parallax Background */}
         <div 
           className="absolute inset-0 z-0 opacity-20"
@@ -103,7 +106,7 @@ const Index = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-card">
+      <section id="features" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-4">
@@ -152,7 +155,7 @@ const Index = () => {
       </section>
 
       {/* Dashboard Preview */}
-      <section className="py-20">
+      <section className="py-20 bg-background/50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -208,7 +211,7 @@ const Index = () => {
       )}
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-card">
+      <section id="pricing" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-4">Choose Your Plan</h2>
@@ -270,7 +273,7 @@ const Index = () => {
       </section>
 
       {/* Community Section */}
-      <section className="py-20 bg-muted/30">
+      <section id="community" className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
