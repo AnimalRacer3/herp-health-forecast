@@ -8,6 +8,7 @@ import { ArrowRight, Activity, Brain, Shield, TrendingUp, Users, MessageCircle }
 import heroImage from "@/assets/hero-reptile.jpg";
 import dashboardImage from "@/assets/dashboard-preview.jpg";
 import forestBg from "@/assets/forest-background.jpg";
+import reptileVideo from "@/assets/ReptileHealthVideo.mp4";
 
 const Index = () => {
   const [showBuilder, setShowBuilder] = useState(false);
@@ -118,7 +119,44 @@ const Index = () => {
           </div>
         </div>
       </section>
-
+      {/* Video Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">
+                See <span className="text-gradient">Proactive Herp</span> in Action
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Watch how our AI-powered platform helps you stay ahead of health issues
+              </p>
+            </div>
+            
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-primary/10">
+              <video
+                className="w-full aspect-video object-cover"
+                controls
+                poster={heroImage}
+              >
+                <source src={reptileVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <Button
+                size="lg"
+                variant="accent"
+                onClick={scrollToPricing}
+                className="gap-2"
+              >
+                Get Started Today
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Benefits Section */}
       <section id="features" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
