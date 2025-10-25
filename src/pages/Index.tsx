@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { PlanBuilder } from "@/components/PlanBuilder";
 import { PricingCard } from "@/components/PricingCard";
 import { EmailCapture } from "@/components/EmailCapture";
-import { ArrowRight, Activity, Brain, Shield, TrendingUp } from "lucide-react";
+import { ArrowRight, Activity, Brain, Shield, TrendingUp, Users, MessageCircle } from "lucide-react";
 import heroImage from "@/assets/hero-reptile.jpg";
 import dashboardImage from "@/assets/dashboard-preview.jpg";
+import forestBg from "@/assets/forest-background.jpg";
 
 const Index = () => {
   const [showBuilder, setShowBuilder] = useState(false);
   const [emailDialogOpen, setEmailDialogOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<"hatchling" | "keeper" | "curator">("keeper");
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handlePlanSelect = (plan: "hatchling" | "keeper" | "curator") => {
     setSelectedPlan(plan);
@@ -23,11 +31,30 @@ const Index = () => {
     setEmailDialogOpen(true);
   };
 
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById("pricing");
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/30">
-        <div className="container mx-auto px-4 py-20 lg:py-32">
+        {/* Parallax Background */}
+        <div 
+          className="absolute inset-0 z-0 opacity-20"
+          style={{
+            backgroundImage: `url(${forestBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/80 to-background/95" />
+        
+        <div className="container relative z-10 mx-auto px-4 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -44,14 +71,11 @@ const Index = () => {
                 <Button
                   size="lg"
                   variant="accent"
-                  onClick={() => setShowBuilder(true)}
+                  onClick={scrollToPricing}
                   className="gap-2"
                 >
                   Find Your Plan
                   <ArrowRight className="h-5 w-5" />
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <a href="#pricing">View Pricing</a>
                 </Button>
               </div>
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
@@ -241,6 +265,52 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">
               Annual plans save 17% • All paid plans include 14-day money-back guarantee
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">
+                Join Our <span className="text-gradient">Community</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Connect with fellow reptile enthusiasts, share experiences, and learn from experts
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-xl bg-card shadow-soft hover:shadow-accent/30 transition-all">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+                  <Users className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Community Forum</h3>
+                <p className="text-muted-foreground mb-6">
+                  Ask questions, share your setup, and get advice from experienced keepers and veterinarians
+                </p>
+                <Button variant="outline" className="gap-2">
+                  Join Forum
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              <div className="p-8 rounded-xl bg-card shadow-soft hover:shadow-accent/30 transition-all">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+                  <MessageCircle className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Live Chat</h3>
+                <p className="text-muted-foreground mb-6">
+                  Real-time discussions with the community. Get quick answers and make friends who share your passion
+                </p>
+                <Button variant="outline" className="gap-2">
+                  Start Chatting
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
